@@ -16,5 +16,5 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
 
 ## Images
 
-![(_prints/print01.jpeg)]
-![(_prints/print02.jpeg)]
+<img src="./_prints/print01.jpeg" alt="Imagem do Uber" />
+<img src="./_prints/print02.jpeg" alt="Imagem das Rotas" />
