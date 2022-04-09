@@ -1,16 +1,19 @@
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
+import { useDirectionsStore } from '../stores/DirectionsStore';
+import { useUserStore } from '../stores/UserStore';
 import tw from 'twrnc';
 
 import { Place } from '../models/Place';
-import { PlacesAutoComplete } from '../components/PlaceAutoComplete';
 import { UberLogo } from '../components/UberLogo';
+import { PlacesAutoComplete } from '../components/PlaceAutoComplete';
 import { NavOptions } from '../components/NavOptions';
-import { useDirectionsStore } from '../stores/DirectionsStore';
+
 
 
 export const HomeScreen = () => {
+  const user = useUserStore(state => state.user);
   const origin = useDirectionsStore(state => state.origin)
   const destination = useDirectionsStore(state => state.destination)
   const setOrigin = useDirectionsStore(state => state.setOrigin)
@@ -44,7 +47,7 @@ export const HomeScreen = () => {
           placeholder='Where from?'
           onPress={(place) => handlePressPlace(place)}
           onSearchClear={() => setOrigin()}
-          userLocation={{latitude: -22.8860887, longitude: -42.9876604}}
+          userLocation={user.location}
         />
         <NavOptions />
         {/* <NavFavourites /> */}
