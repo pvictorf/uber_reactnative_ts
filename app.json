@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "https://github.com/pvictorf/uber_reactnative_ts",
+    "githubUrl": "https://github.com/pvictorf/uber_reactnative_ts"
   }
 }
