@@ -16,6 +16,8 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
 
 ## Images
 <div style="display: flex; flex-wrap: wrap;">
-  <img src="./_prints/print01.jpeg" alt="Imagem do Uber" width="400px" />
-  <img src="./_prints/print02.jpeg" alt="Imagem das Rotas" width="400px" />
+  <img src="./_prints/print01.jpeg" alt="Login" width="400px" />
+  <img src="./_prints/print02.jpeg" alt="Navegação" width="400px" />
+  <img src="./_prints/print03.jpeg" alt="Rotas" width="400px" />
+  <img src="./_prints/print04.jpeg" alt="Uber X" width="400px" />
 </div>
