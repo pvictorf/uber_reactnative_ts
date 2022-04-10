@@ -33,10 +33,11 @@ export const NavigateCardScreen = () => {
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <View>
         <Text style={tw`text-center text-xl py-5`}>Good Morning! {user.name}</Text> 
-          <View style={tw`flex-shrink border-gray-200 border-t`}>
+          <View style={tw`flex-shrink border-gray-200 border-t pt-4`}>
             <PlacesAutoComplete
               placeholder='Where to?'
-              inputStyle={tw`flex-1 text-lg m-4 p-3 bg-gray-200`}
+              inputStyle={tw`mx-4 bg-gray-200`}
+              iconStyle={tw`text-lg text-gray-500 absolute top-auto right-8`}
               placesStyle={tw`mx-2 mb-2`}
               onPress={(place) => handlePressPlace(place)}
               onSearchClear={() => handleSearchClear()}
