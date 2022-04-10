@@ -49,7 +49,7 @@ export const NavigateCardScreen = () => {
             <PlacesAutoComplete
               placeholder='Where to?'
               inputStyle={tw`mx-4 bg-gray-200`}
-              iconStyle={tw`text-lg text-gray-500 absolute top-auto right-8`}
+              iconStyle={tw`text-lg text-gray-500 absolute right-8`}
               placesStyle={tw`mx-2 mb-2`}
               onPress={(place) => handlePressPlace(place)}
               onSearchClear={() => handleSearchClear()}
