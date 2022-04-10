@@ -3,14 +3,17 @@ import { SafeAreaView, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useUserStore } from '../stores/UserStore';
 import { useDirectionsStore } from '../stores/DirectionsStore';
+import IconIonic from '@expo/vector-icons/Ionicons'; 
 import tw from 'twrnc';
 
 import { Chip } from '../components/Chip';
+import { Separator } from '../components/Separator';
 import { PlacesAutoComplete } from '../components/PlaceAutoComplete';
 import { Place } from '../models/Place';
+import { NavFavourites } from '../components/NavFavourites';
 
 
-// import Separator from '../components/Separator';
+
 
 export const NavigateCardScreen = () => {
   const navigation = useNavigation()
@@ -25,6 +28,14 @@ export const NavigateCardScreen = () => {
     })
   }
 
+  function handlePressFavourite(favourite: any) {
+    setDestination({
+      placeName: favourite.placeName,
+      description: favourite.placeName,
+      location: favourite.location,
+    })
+  }
+
   function handleSearchClear() {
     setDestination();
   }
@@ -32,6 +43,7 @@ export const NavigateCardScreen = () => {
   return (
     <SafeAreaView style={tw`flex-1 bg-white`}>
       <View>
+        <Separator />
         <Text style={tw`text-center text-xl py-5`}>Good Morning! {user.name}</Text> 
           <View style={tw`flex-shrink border-gray-200 border-t pt-4`}>
             <PlacesAutoComplete
@@ -45,19 +57,21 @@ export const NavigateCardScreen = () => {
             />  
           </View>   
       </View> 
-      {/*<NavFavourites />*/}  
+      <NavFavourites onPress={handlePressFavourite} />
       <View style={tw`flex-row bg-white justify-evenly py-4 mt-auto border-t border-gray-100`}>
         <Chip 
           onPress={() => navigation.navigate('RideOptionsCardScreen')}
           text='Rides' 
           bgColor='#222'
           textColor='#FFF'
+          icon={<IconIonic name='car' size={22} color='#fff' />}
         />
         <Chip 
           onPress={() => {}}
           text='Eats' 
           bgColor='#eee'
           textColor='#333'
+          icon={<IconIonic name='fast-food-outline' size={22} color='black'/>}
         />
       </View>
     </SafeAreaView>
