@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useDirectionsStore } from '../stores/DirectionsStore';
 import { useUserStore } from '../stores/UserStore';
 import tw from 'twrnc';
@@ -9,10 +9,12 @@ import { Place } from '../models/Place';
 import { UberLogo } from '../components/UberLogo';
 import { PlacesAutoComplete } from '../components/PlaceAutoComplete';
 import { NavOptions } from '../components/NavOptions';
-
+import { NavFavourites } from '../components/NavFavourites';
 
 
 export const HomeScreen = () => {
+  const navigation = useNavigation();
+
   const user = useUserStore(state => state.user);
   const origin = useDirectionsStore(state => state.origin)
   const destination = useDirectionsStore(state => state.destination)
@@ -36,7 +38,16 @@ export const HomeScreen = () => {
       description: place.placeName,
       location: place.location,
     });
-    resetInitialState();
+  }
+
+  function handlePressFavourite(favourite: any) {
+    console.log(favourite);
+    setOrigin({
+      placeName: favourite.placeName,
+      description: favourite.placeName,
+      location: favourite.location,
+    });
+    navigation.navigate('MapScreen');
   }
 
   return (
@@ -50,7 +61,7 @@ export const HomeScreen = () => {
           userLocation={user.location}
         />
         <NavOptions />
-        {/* <NavFavourites /> */}
+        <NavFavourites onPress={handlePressFavourite} /> 
       </View>
     </SafeAreaView>
   )
