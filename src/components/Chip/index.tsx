@@ -8,7 +8,7 @@ interface ChipProps {
   textColor: string,
   text: string,
   style?: any,
-  icon?: any,
+  icon?: JSX.Element,
 }
 
 export const Chip = ({onPress, style, bgColor, textColor, text, icon}: ChipProps) => {
