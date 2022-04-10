@@ -15,7 +15,7 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
 - Poline para desenhar a linha das rotas de origem e destino.
 
 ## Images
-<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+<div align='center'>
   <img src="./_prints/print01.jpeg" alt="Login" width="320px" />
   <img src="./_prints/print02.jpeg" alt="Navegação" width="320px" />
   <img src="./_prints/print03.jpeg" alt="Rotas" width="320px" />
