@@ -5,7 +5,7 @@ import { GeocodingService } from '../../services/GeocodingService';
 import { Coordinates } from '../../models/Coordinates';
 import { Place } from '../../models/Place';
 import IconFeather from '@expo/vector-icons/Feather';
-import tw, { TailwindFn } from 'twrnc';
+import tw from 'twrnc';
 
 
 interface PlacesAutoCompleteProps {
@@ -14,12 +14,13 @@ interface PlacesAutoCompleteProps {
   placeholder: string,
   debounce?: number,
   containerStyle?: any,
+  iconStyle?: any,
   inputStyle?: any,
   placesStyle?: any,
   userLocation?: Coordinates,
 }
 
-export const PlacesAutoComplete = ({ onPress, onSearchClear, placeholder, containerStyle, inputStyle, placesStyle, debounce = 700, userLocation }: PlacesAutoCompleteProps) => {
+export const PlacesAutoComplete = ({ onPress, onSearchClear, placeholder, containerStyle, inputStyle, iconStyle, placesStyle, debounce = 700, userLocation }: PlacesAutoCompleteProps) => {
   const [places, setPlaces] = useState<Place[]>([])
   const [search, setSearch] = useState('')
   const debounceFindPlaces = useCallback(debounceFn(findPlaces, debounce), []);
@@ -54,21 +55,22 @@ export const PlacesAutoComplete = ({ onPress, onSearchClear, placeholder, contai
 
   return (
     <View>
-      <View style={containerStyle ? containerStyle : tw`flex-row items-center`}>
+      <View style={[tw`flex-row items-center relative`, containerStyle]}>
         <TextInput 
           value={search}
-          style={inputStyle ? inputStyle : tw`text-lg m-2 flex-1`}
+          style={[tw`flex-1 text-lg p-3 pr-10`, inputStyle, {minHeight: 55}]}
           placeholder={placeholder}
           onChangeText={onSearchChange}
         /> 
         <IconFeather 
           onPress={handleClearSearch}
-          color={search ? '#ccc' : '#fff'} 
+          style={[tw`text-lg text-gray-300 absolute right-3 ${search ? 'opacity-100' : 'opacity-0'}`, iconStyle]}
           name='x-circle' 
           type='feather' 
-          size={24} 
-        />  
+          size={23} 
+        /> 
       </View>
+
       {places.length > 0 && (
         <FlatList
           data={places}
@@ -88,6 +90,7 @@ export const PlacesAutoComplete = ({ onPress, onSearchClear, placeholder, contai
           )}  
         />
       )}
+
     </View>
   );
 }
