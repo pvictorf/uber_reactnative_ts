@@ -4,4 +4,5 @@ export interface TravelTime {
   time: string,
   totalHours: number,
   totalMinutes: number,
+  totalSeconds: number,
 } 

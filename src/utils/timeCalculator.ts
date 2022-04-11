@@ -6,6 +6,7 @@ export function calcSecondsToHours(seconds: number = 0) {
     minutes: time.slice(3),
     totalMinutes: Math.round(seconds / 60),
     totalHours: Math.floor(seconds / 3600),
+    totalSeconds: seconds,
     time: time,
   };
 }

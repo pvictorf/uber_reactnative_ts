@@ -85,7 +85,7 @@ export const RideOptionsCardScreen = () => {
               source={{uri: image}}
               style={{width: 90, height: 90, resizeMode: 'contain'}}
             />
-            {travelTime && (  
+            {travelTime?.totalSeconds && (  
             <>
               <View style={tw`items-start flex-1 ml-4`}>
                 <Text style={tw`text-lg font-semibold`}>{title}</Text>
