@@ -41,7 +41,6 @@ export const HomeScreen = () => {
   }
 
   function handlePressFavourite(favourite: any) {
-    console.log(favourite);
     setOrigin({
       placeName: favourite.placeName,
       description: favourite.placeName,
