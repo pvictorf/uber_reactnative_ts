@@ -14,6 +14,12 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
 - Técnica de debounce para buscar as rotas conforme o usuário digita.
 - Poline para desenhar a linha das rotas de origem e destino.
 
+## Instalação
+1) Copie o .env.example para .env e insira sua chave pública do Mapbox (crie uma conta é gratuita!)
+2) Rode o comando ```npm install``` para instalar as dependências
+3) Execute o Expo com comando ```npm run start``` (certifique-se de ter o aplicativo do Expo instalado e os SDKs Android ou IOS)
+
+
 ## Images
 <div align='center'>
   <img src="./_prints/print01.jpeg" alt="Login" width="320px" />
