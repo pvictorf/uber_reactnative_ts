@@ -61,6 +61,7 @@ export const PlacesAutoComplete = ({ onPress, onSearchClear, placeholder, contai
           style={[tw`flex-1 text-lg p-3 pr-10`, inputStyle, {minHeight: 55}]}
           placeholder={placeholder}
           onChangeText={onSearchChange}
+          selectionColor={'black'}
         /> 
         <IconFeather 
           onPress={handleClearSearch}
