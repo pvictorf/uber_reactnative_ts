@@ -1,15 +1,33 @@
-import { useState, useEffect, useRef } from 'react';
-import MapView, { Marker, Polyline } from 'react-native-maps';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import MapView from 'react-native-maps';
 import { useDirectionsStore } from '../../stores/DirectionsStore';
 import tw from 'twrnc'
 
 import { MapMarker } from '../MapMarker';
 import { MapDirections } from '../MapDirections';
+import { MatrixService } from '../../services/MatrixService';
+import { calcSecondsToHours } from '../../utils/timeCalculator';
 
 export const Map = () => {
-  const mapRef = useRef()
+  const mapRef = useRef();
   const origin = useDirectionsStore(state => state.origin);
   const destination = useDirectionsStore(state => state.destination);
+  const setTravelTimeInformation = useDirectionsStore(state => state.setTravelTimeInformation);
+
+  
+  useEffect(async () => {
+    async function getTimeTravel() {
+      if(!origin?.placeName || !destination?.placeName) return;
+
+      const matrix = await MatrixService.findMatrixDuration(origin, destination);
+      setTravelTimeInformation({
+        ...matrix.travelTimeInformation
+      })
+    }
+    getTimeTravel();
+  }, [origin, destination]);
+
+
 
   return (
     <MapView
