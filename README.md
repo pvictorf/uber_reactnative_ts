@@ -20,4 +20,6 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
   <img src="./_prints/print02.jpeg" alt="Navegação" width="320px" />
   <img src="./_prints/print03.jpeg" alt="Rotas" width="320px" />
   <img src="./_prints/print04.jpeg" alt="Uber X" width="320px" />
+  <img src="./_prints/print05.jpeg" alt="Mapa destino" width="320px" />
+  <img src="./_prints/print06.jpeg" alt="Selecionando a corrida" width="320px" />
 </div>
