@@ -15,9 +15,11 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
 - Poline para desenhar a linha das rotas de origem e destino.
 
 ## Instalação
-1) Copie o .env.example para .env e insira sua chave pública do Mapbox (crie uma conta é gratuita!)
-2) Rode o comando ```npm install``` para instalar as dependências
-3) Execute o Expo com comando ```npm run start``` (certifique-se de ter o aplicativo do Expo instalado e os SDKs Android ou IOS)
+1) Instale o Expo ```npm install --global expo-cli```
+2) Registre sua conta no ```Mapbox (é gratuito!)``` e copie a ```public key```;
+2) Copie o .env.example para .env e cole sua chave pública do Mapbox;
+3) Rode o comando ```npm install``` para instalar as dependências;
+4) Execute o Expo com comando ```npm run start``` (certifique-se de ter o aplicativo do Expo instalado e os SDKs Android ou IOS);
 
 
 ## Images
