@@ -1,4 +1,4 @@
-import { apiGeocoding } from "../apis"
+import { geocodingApi } from "../apis"
 import { Coordinates } from './../models/Coordinates';
 import { Place } from './../models/Place';
 
@@ -7,7 +7,7 @@ export const GeocodingService = {
 
   async findPlaces(search: string, location: Coordinates): Promise<Place[]> {
     const userLocation = `${location.longitude},${location.latitude}`; //'-49.273182,-25.4354423'
-    const { data } = await apiGeocoding.get(`/mapbox.places/${search}.json?country=BR&limit=5&autocomplete=true&proximity=${userLocation}`)
+    const { data } = await geocodingApi.get(`/mapbox.places/${search}.json?country=BR&limit=5&autocomplete=true&proximity=${userLocation}`)
     return data.features.map((data: any) => this._mapper(data))
   },
 

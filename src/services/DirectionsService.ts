@@ -1,4 +1,4 @@
-import { apiDirections } from "../apis"
+import { directionsApi } from "../apis"
 import { Direction } from './../models/Direction';
 import { Coordinates } from './../models/Coordinates';
 
@@ -8,7 +8,7 @@ export const DirectionsService = {
     const startCoords = `${origin.location.longitude}, ${origin.location.latitude}`
     const endCoords = `${destination.location.longitude}, ${destination.location.latitude}`
     
-    const { data } = await apiDirections.get(`/driving-traffic/${startCoords};${endCoords}?alternatives=false&geometries=geojson&steps=false&overview=full`)
+    const { data } = await directionsApi.get(`/driving-traffic/${startCoords};${endCoords}?alternatives=false&geometries=geojson&steps=false&overview=full`)
     
     const routes = data?.routes[0]?.geometry || []
 
