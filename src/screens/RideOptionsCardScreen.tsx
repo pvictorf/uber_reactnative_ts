@@ -6,7 +6,8 @@ import IconIonic from '@expo/vector-icons/Ionicons';
 import tw from 'twrnc';
 import { useDirectionsStore } from '../stores/DirectionsStore';
 import { TravelTime } from '../models/TravelTime';
-import "intl";
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 
 
 const SURGE_CHARGE_RATE = 0.5;
