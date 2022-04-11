@@ -44,9 +44,9 @@ export const RideOptionsCardScreen = () => {
 
   function displayTravelTime(travelTime: TravelTime): string {
     if(Number(travelTime?.hours) > 1) {
-      return `${Number(travelTime?.hours)} hour(s) ${Number(travelTime?.minutes)} minute(s)`;
+      return `${Number(travelTime?.hours)} hours ${Number(travelTime?.minutes)} minutes`;
     }
-    return `${Number(travelTime?.minutes) || 2} minute(s)`;
+    return `${Number(travelTime?.minutes) || 2} minutes`;
   }
 
   function calcTravelTimePrice(totalMinutes: number, multiplier: number): string {
@@ -87,7 +87,7 @@ export const RideOptionsCardScreen = () => {
             />
             {travelTime && (  
             <>
-              <View style={tw`items-start flex-1 ml-5`}>
+              <View style={tw`items-start flex-1 ml-4`}>
                 <Text style={tw`text-lg font-semibold`}>{title}</Text>
                 <Text style={tw`text-gray-400`}>{displayTravelTime(travelTime)}</Text>
               </View>
