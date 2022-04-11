@@ -4,7 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 import { Separator } from '../components/Separator';
 import IconIonic from '@expo/vector-icons/Ionicons'; 
 import tw from 'twrnc';
+import { useDirectionsStore } from '../stores/DirectionsStore';
+import { TravelTime } from '../models/TravelTime';
+import "intl";
 
+
+const SURGE_CHARGE_RATE = 0.5;
+const MIN_TRAVEL_PRICE = 4.50;
 const data = [
   {
     id: 'Uber-X-123',
@@ -30,9 +36,28 @@ const data = [
 export const RideOptionsCardScreen = () => {
   const navigation = useNavigation();
   const [seletedRide, setSelectedRide] = useState<any>(null);
+  const travelTime = useDirectionsStore(state => state.travelTimeInformation)
 
   function handleSelectRide(ride: any) {
     setSelectedRide(ride)
+  }
+
+  function displayTravelTime(travelTime: TravelTime): string {
+    if(Number(travelTime?.hours) > 1) {
+      return `${Number(travelTime?.hours)} hours ${Number(travelTime?.minutes)} minutes`;
+    }
+    return `${Number(travelTime?.minutes) || 2} minutes`;
+  }
+
+  function calcTravelTimePrice(totalMinutes: number, multiplier: number): string {
+    if(totalMinutes <= 0) totalMinutes = MIN_TRAVEL_PRICE;
+
+    const price = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format((totalMinutes * SURGE_CHARGE_RATE * multiplier));
+
+    return price;
   }
 
   return (
@@ -59,12 +84,16 @@ export const RideOptionsCardScreen = () => {
             <Image
               source={{uri: image}}
               style={{width: 90, height: 90, resizeMode: 'contain'}}
-            />  
-            <View style={tw`-ml-6`}>
-              <Text style={tw`text-lg font-semibold`}>{title}</Text>
-              <Text style={tw``}>Travel time...</Text>
-            </View>
-            <Text style={tw``}>R$ 36,99</Text>
+            />
+            {travelTime && (  
+            <>
+              <View style={tw`items-start flex-1 ml-5`}>
+                <Text style={tw`text-lg font-semibold`}>{title}</Text>
+                <Text style={tw``}>{displayTravelTime(travelTime)}</Text>
+              </View>
+              <Text style={tw``}>{calcTravelTimePrice(travelTime.totalMinutes, multiplier)}</Text>
+            </>
+            )}
           </TouchableOpacity> 
         )}
       />
