@@ -14,7 +14,11 @@ export const MapDirections = ({ origin, destination, mapRef }: MapDirectionsProp
   const [directions, setDirections] = useState<LatLng[]>([])
 
   useEffect(() => {
-    if(!origin?.placeName || !destination?.placeName) return;
+    if(!origin?.placeName || !destination?.placeName) {
+      setDirections([]);
+      mapRef.current.fitToSuppliedMarkers(['origin']) 
+      return;
+    }
 
     DirectionsService
       .findDirections(origin, destination)
@@ -26,11 +30,12 @@ export const MapDirections = ({ origin, destination, mapRef }: MapDirectionsProp
       })     
   }, [origin, destination]);
 
-  if(!origin && !destination && !directions) {
+  if(!origin && !destination || !directions.length) {
     return null
   }
 
   return (
+
     <Polyline
       coordinates={directions}
       strokeColor="#222" 
