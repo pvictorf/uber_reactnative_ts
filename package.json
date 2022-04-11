@@ -21,6 +21,7 @@
     "expo-constants": "~13.0.1",
     "expo-location": "~14.0.1",
     "expo-status-bar": "~1.2.0",
+    "intl": "^1.2.5",
     "lodash": "^4.17.21",
     "react": "17.0.1",
     "react-native": "0.64.3",
