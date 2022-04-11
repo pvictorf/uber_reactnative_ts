@@ -13,8 +13,6 @@ import { Place } from '../models/Place';
 import { NavFavourites } from '../components/NavFavourites';
 
 
-
-
 export const NavigateCardScreen = () => {
   const navigation = useNavigation()
   const user = useUserStore(state => state.user)
