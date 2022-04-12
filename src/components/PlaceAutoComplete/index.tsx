@@ -75,14 +75,14 @@ export const PlacesAutoComplete = ({ onPress, onSearchClear, placeholder, contai
       {places.length > 0 && (
         <FlatList
           data={places}
-          style={placesStyle}
+          style={[placesStyle, tw`flex-grow h-50 pb-10`]}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
             <TouchableOpacity 
               style={tw`flex-row py-3 border-b border-gray-100`}
               onPress={() => onPlacePress(item)}
             >
-              <View>
+              <View style={tw`flex-1 py-1`}>
                 <Text style={tw`text-black ml-2`}>
                   {item.placeName}
                 </Text>

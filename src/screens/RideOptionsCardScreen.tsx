@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { SafeAreaView, View, TouchableOpacity, Image, Text, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Separator } from '../components/Separator';
-import IconIonic from '@expo/vector-icons/Ionicons'; 
-import tw from 'twrnc';
 import { useDirectionsStore } from '../stores/DirectionsStore';
 import { TravelTime } from '../models/TravelTime';
+import tw from 'twrnc';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
+
+import { Separator } from '../components/Separator';
+import IconIonic from '@expo/vector-icons/Ionicons'; 
 
 
 const SURGE_CHARGE_RATE = 0.5;
@@ -44,10 +45,10 @@ export const RideOptionsCardScreen = () => {
   }
 
   function displayTravelTime(travelTime: TravelTime): string {
-    if(Number(travelTime?.hours) > 1) {
-      return `${Number(travelTime?.hours)} hours ${Number(travelTime?.minutes)} minutes`;
+    if(Number(travelTime?.totalHours) > 1) {
+      return `${Number(travelTime?.totalHours)} hours ${Number(travelTime?.minutes)} minutes`;
     }
-    return `${Number(travelTime?.minutes) || 2} minutes`;
+    return `${Number(travelTime?.totalMinutes) || 2} minutes`;
   }
 
   function calcTravelTimePrice(totalMinutes: number, multiplier: number): string {
@@ -105,7 +106,7 @@ export const RideOptionsCardScreen = () => {
           disabled={!seletedRide?.id}
         >
           <Text style={tw`text-center text-white text-lg`}>
-            Choose {seletedRide?.title}
+            Confirm {seletedRide?.title}
           </Text>
         </TouchableOpacity>  
       </View> 

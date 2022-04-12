@@ -16,6 +16,7 @@ import { NavFavourites } from '../components/NavFavourites';
 export const NavigateCardScreen = () => {
   const navigation = useNavigation()
   const user = useUserStore(state => state.user)
+  const destination = useDirectionsStore(state => state.destination)
   const setDestination = useDirectionsStore(state => state.setDestination)
 
   function handlePressPlace(place: Place) {
@@ -60,6 +61,7 @@ export const NavigateCardScreen = () => {
         <Chip 
           onPress={() => navigation.navigate('RideOptionsCardScreen')}
           text='Rides' 
+          disabled={!destination}
           bgColor='#222'
           textColor='#FFF'
           icon={<IconIonic name='car' size={22} color='#fff' />}
@@ -67,6 +69,7 @@ export const NavigateCardScreen = () => {
         <Chip 
           onPress={() => {}}
           text='Eats' 
+          disabled={!destination}
           bgColor='#eee'
           textColor='#333'
           icon={<IconIonic name='fast-food-outline' size={22} color='black'/>}
