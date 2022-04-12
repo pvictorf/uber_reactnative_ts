@@ -11,7 +11,7 @@ export interface LocationCardProps {
 }
 
 export const LocationCard = ({placeName, travel}: LocationCardProps) => {
-  if(!travel.totalSeconds) return;
+  if(!travel.totalSeconds) return null;
 
   return (
     <View style={tw`flex-row shadow-sm mt-7 z-10 `}>
