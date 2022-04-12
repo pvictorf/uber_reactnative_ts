@@ -68,37 +68,42 @@ export const RideOptionsCardScreen = () => {
       <View>  
         <TouchableOpacity 
           style={tw`z-10 absolute top-3 left-5 p-3 rounded-full`}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate('NavigateCardScreen')}
         >
           <IconIonic name="ios-chevron-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={tw`z-0 text-center py-5 text-xl`}>Select a Ride</Text> 
       </View>
 
-      <FlatList 
-        data={data}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item: {id, image, title, multiplier}, item }) => (
-          <TouchableOpacity 
-            style={tw`flex-row justify-between items-center px-8 ${id === seletedRide?.id ? 'bg-gray-200' : ''}`}
-            onPress={() => handleSelectRide(item)}
-          >
-            <Image
-              source={{uri: image}}
-              style={{width: 90, height: 90, resizeMode: 'contain'}}
-            />
-            {travelTime?.totalSeconds && (  
-            <>
-              <View style={tw`items-start flex-1 ml-4`}>
-                <Text style={tw`text-lg font-semibold`}>{title}</Text>
-                <Text style={tw`text-gray-400`}>{displayTravelTime(travelTime)}</Text>
-              </View>
-              <Text style={tw`text-lg`}>{calcTravelTimePrice(travelTime.totalMinutes, multiplier)}</Text>
-            </>
-            )}
-          </TouchableOpacity> 
-        )}
-      />
+      {travelTime?.totalSeconds ? (
+        <FlatList 
+          data={data}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item: {id, image, title, multiplier}, item }) => (
+            <TouchableOpacity 
+              style={tw`flex-row justify-between items-center px-8 ${id === seletedRide?.id ? 'bg-gray-200' : ''}`}
+              onPress={() => handleSelectRide(item)}
+            >
+              <Image
+                source={{uri: image}}
+                style={{width: 90, height: 90, resizeMode: 'contain'}}
+              />
+              {travelTime?.totalSeconds && (  
+              <>
+                <View style={tw`items-start flex-1 ml-4`}>
+                  <Text style={tw`text-lg font-semibold`}>{title}</Text>
+                  <Text style={tw`text-gray-400`}>{displayTravelTime(travelTime)}</Text>
+                </View>
+                <Text style={tw`text-lg`}>{calcTravelTimePrice(travelTime.totalMinutes, multiplier)}</Text>
+              </>
+              )}
+            </TouchableOpacity> 
+          )}
+        />
+      ) : (
+        <Text style={tw`flex-1 text-xl text-center mt-8`}>Sorry! We can't find any Ride :(</Text>
+      )}
+      
 
       <View>
         <TouchableOpacity 
