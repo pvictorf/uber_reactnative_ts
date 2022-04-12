@@ -1,6 +1,5 @@
-import React from 'react';
-import { SafeAreaView, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView, View, Text } from 'react-native';
 import { useUserStore } from '../stores/UserStore';
 import { useDirectionsStore } from '../stores/DirectionsStore';
 import IconIonic from '@expo/vector-icons/Ionicons'; 
@@ -13,10 +12,12 @@ import { Place } from '../models/Place';
 import { NavFavourites } from '../components/NavFavourites';
 
 
+
 export const NavigateCardScreen = () => {
   const navigation = useNavigation()
   const user = useUserStore(state => state.user)
   const destination = useDirectionsStore(state => state.destination)
+  const travelTime = useDirectionsStore(state => state.travelTimeInformation)
   const setDestination = useDirectionsStore(state => state.setDestination)
 
   function handlePressPlace(place: Place) {
@@ -69,7 +70,7 @@ export const NavigateCardScreen = () => {
         <Chip 
           onPress={() => {}}
           text='Eats' 
-          disabled={!destination}
+          disabled={!travelTime?.totalSeconds}
           bgColor='#eee'
           textColor='#333'
           icon={<IconIonic name='fast-food-outline' size={22} color='black'/>}
