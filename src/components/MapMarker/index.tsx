@@ -8,7 +8,7 @@ interface MapMarkerProps extends MarkerProps {
   format: 'circle' | 'square'
 }
 
-export const MapMarker = ({title, description, identifier, location, format}: MapMarkerProps) => {
+export const MapMarker = ({title, description, identifier, location, format, children}: MapMarkerProps) => {
   return (
     <Marker 
       coordinate={{
@@ -19,6 +19,7 @@ export const MapMarker = ({title, description, identifier, location, format}: Ma
       description={description}
       identifier={identifier}
     >
+      {children}
       <View style={styles[format]} />
     </Marker>
   )
