@@ -8,14 +8,16 @@ interface ChipProps {
   textColor: string,
   text: string,
   style?: any,
+  disabled?: boolean,
   icon?: JSX.Element,
 }
 
-export const Chip = ({onPress, style, bgColor, textColor, text, icon}: ChipProps) => {
+export const Chip = ({onPress, style, bgColor, textColor, text, icon, disabled}: ChipProps) => {
   return (
     <TouchableOpacity 
       onPress={onPress}
       style={[tw`flex-row w-24 px-4 py-3 rounded-full items-center justify-around`, {...style, backgroundColor: bgColor}]}
+      disabled={disabled}
     >
       {icon}
       <Text style={[tw`text-center`, { color: textColor }]}>{text}</Text>
