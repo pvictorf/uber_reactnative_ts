@@ -1,14 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-import MapView from 'react-native-maps';
+import { Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import { useDirectionsStore } from '../../stores/DirectionsStore';
 import tw from 'twrnc'
 
-import { MapMarker } from '../MapMarker';
-import { MapDirections } from '../MapDirections';
+import { MapDirections } from '../MapDirections'; 
 import { MatrixService } from '../../services/MatrixService';
 import { LocationCard } from '../LocationCard';
-
+import markerImage from '../../../assets/images/marker.png';
+import markerCircleImage from '../../../assets/images/markercircle.png';
 
 export const Map = () => {
   const mapRef = useRef();
@@ -16,6 +17,7 @@ export const Map = () => {
   const origin = useDirectionsStore(state => state.origin);
   const destination = useDirectionsStore(state => state.destination);
   const setTravelTimeInformation = useDirectionsStore(state => state.setTravelTimeInformation);
+  const travelTimeInformation = useDirectionsStore(state => state.travelTimeInformation);
 
   
   useEffect(() => {
@@ -40,6 +42,8 @@ export const Map = () => {
       ref={mapRef}
       style={tw`flex-1 relative`}
       mapType='mutedStandard'
+      showsUserLocation={true}
+      userInterfaceStyle={'dark'}
       initialRegion={{
         latitude: origin?.location.latitude || 0,
         longitude: origin?.location.longitude || 0,
@@ -54,25 +58,28 @@ export const Map = () => {
       /> 
 
       {origin?.placeName && (
-        <MapMarker 
-          title='Orign'
+        <Marker 
+          title='Origin'
           identifier='origin'
-          location={origin.location}
-          description={origin.description}
-          format='circle'
+          description={origin.description} 
+          coordinate={{...origin.location}}
+          image={markerCircleImage}
+          anchor={{ x: 0, y: 0 }}
         >
-        </MapMarker>
+        </Marker>
       )}
 
       {destination?.placeName && (
-        <MapMarker 
+        <Marker 
           title='Destination'
           identifier='destination'
-          location={destination.location}
           description={destination.description} 
-          format='square'
+          coordinate={{...destination.location}}
+          image={markerImage}
+          anchor={{ x: 0, y: 0 }}
         >
-        </MapMarker>
+          <LocationCard placeName={destination.placeName} travel={travelTimeInformation} />
+        </Marker>
       )}
       
     </MapView>  
