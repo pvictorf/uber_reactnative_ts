@@ -26,10 +26,10 @@ export const MapDirections = ({ origin, destination, mapRef }: MapDirectionsProp
         setDirections(routes as LatLng[])
         mapRef.current.fitToSuppliedMarkers(['origin', 'destination'], {
           edgePadding: { 
-            top: getPixelSize(80), 
-            right: getPixelSize(80), 
-            bottom: getPixelSize(80), 
-            left: getPixelSize(80)
+            top: getPixelSize(110), 
+            right: getPixelSize(110), 
+            bottom: getPixelSize(110), 
+            left: getPixelSize(110)
          }
         }) 
       })     
