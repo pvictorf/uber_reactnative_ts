@@ -16,8 +16,12 @@ export const Chip = ({onPress, style, bgColor, textColor, text, icon, disabled}:
   return (
     <TouchableOpacity 
       onPress={onPress}
-      style={[tw`flex-row w-24 px-4 py-3 rounded-full items-center justify-around`, {...style, backgroundColor: bgColor}]}
+      style={[
+        tw`flex-row w-24 px-4 py-3 rounded-full items-center justify-around ${disabled ? 'opacity-80' : 'opacity-100'}`, 
+        {...style, backgroundColor: bgColor}
+      ]}
       disabled={disabled}
+
     >
       {icon}
       <Text style={[tw`text-center`, { color: textColor }]}>{text}</Text>
