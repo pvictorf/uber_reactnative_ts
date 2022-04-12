@@ -1,28 +1,34 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import MapView from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 import { useDirectionsStore } from '../../stores/DirectionsStore';
 import tw from 'twrnc'
 
 import { MapMarker } from '../MapMarker';
 import { MapDirections } from '../MapDirections';
 import { MatrixService } from '../../services/MatrixService';
-import { calcSecondsToHours } from '../../utils/timeCalculator';
+import { LocationCard } from '../LocationCard';
+
 
 export const Map = () => {
   const mapRef = useRef();
+  const navigation = useNavigation()
   const origin = useDirectionsStore(state => state.origin);
   const destination = useDirectionsStore(state => state.destination);
   const setTravelTimeInformation = useDirectionsStore(state => state.setTravelTimeInformation);
 
   
-  useEffect(async () => {
+  useEffect(() => {
     async function getTimeTravel() {
       if(!origin?.placeName || !destination?.placeName) return;
 
       const matrix = await MatrixService.findMatrixDuration(origin, destination);
+
       setTravelTimeInformation({
         ...matrix.travelTimeInformation
-      })
+      });
+
+      navigation.navigate('RideOptionsCardScreen');
     }
     getTimeTravel();
   }, [origin, destination]);
@@ -54,7 +60,8 @@ export const Map = () => {
           location={origin.location}
           description={origin.description}
           format='circle'
-        />
+        >
+        </MapMarker>
       )}
 
       {destination?.placeName && (
@@ -64,7 +71,8 @@ export const Map = () => {
           location={destination.location}
           description={destination.description} 
           format='square'
-        />
+        >
+        </MapMarker>
       )}
       
     </MapView>  
