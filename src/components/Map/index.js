@@ -1,7 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
-import { Image } from 'react-native';
+import { useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
-import { useNavigation } from '@react-navigation/native';
 import { useDirectionsStore } from '../../stores/DirectionsStore';
 import tw from 'twrnc'
 
@@ -10,6 +8,7 @@ import { MatrixService } from '../../services/MatrixService';
 import { LocationCard } from '../LocationCard';
 import markerImage from '../../../assets/images/marker.png';
 import markerCircleImage from '../../../assets/images/markercircle.png';
+import { useNavigation } from '@react-navigation/native';
 
 export const Map = () => {
   const mapRef = useRef();
@@ -25,16 +24,17 @@ export const Map = () => {
       if(!origin?.placeName || !destination?.placeName) return;
 
       const matrix = await MatrixService.findMatrixDuration(origin, destination);
-
+      
       setTravelTimeInformation({
         ...matrix.travelTimeInformation
       });
 
-      navigation.navigate('RideOptionsCardScreen');
+      if(travelTimeInformation.totalSeconds > 0) {
+        navigation.navigate('RideOptionsCardScreen');
+      }
     }
     getTimeTravel();
   }, [origin, destination]);
-
 
 
   return (
@@ -69,7 +69,7 @@ export const Map = () => {
         </Marker>
       )}
 
-      {destination?.placeName && (
+      {destination?.placeName && travelTimeInformation && (
         <Marker 
           title='Destination'
           identifier='destination'
