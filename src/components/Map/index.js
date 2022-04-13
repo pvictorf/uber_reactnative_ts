@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { useDirectionsStore } from '../../stores/DirectionsStore';
+import { useNavigation } from '@react-navigation/native';
 import tw from 'twrnc'
 
 import { MapDirections } from '../MapDirections'; 
@@ -8,7 +9,7 @@ import { MatrixService } from '../../services/MatrixService';
 import { LocationCard } from '../LocationCard';
 import markerImage from '../../../assets/images/marker.png';
 import markerCircleImage from '../../../assets/images/markercircle.png';
-import { useNavigation } from '@react-navigation/native';
+
 
 export const Map = () => {
   const mapRef = useRef();
