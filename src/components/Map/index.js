@@ -29,12 +29,19 @@ export const Map = () => {
         ...matrix.travelTimeInformation
       });
 
-      if(travelTimeInformation.totalSeconds > 0) {
-        navigation.navigate('RideOptionsCardScreen');
-      }
     }
     getTimeTravel();
   }, [origin, destination]);
+
+  useEffect(() => {
+    function navigateToRideScreen() {
+      const hasTravelTimeInfo = (travelTimeInformation.totalSeconds > 0) 
+      if(hasTravelTimeInfo) {
+        navigation.navigate('RideOptionsCardScreen');
+      }
+    }
+    navigateToRideScreen();
+  }, [travelTimeInformation]);
 
 
   return (
