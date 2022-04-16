@@ -31,3 +31,9 @@ React Native | Tailwind | Zustand | Mapbox API | Maps | Navigation | Directions
   <img src="./_prints/print05.jpeg" alt="Mapa destino" width="320px" />
   <img src="./_prints/print06.jpeg" alt="Selecionando a corrida" width="320px" />
 </div>
+
+<br/>
+
+<div align='center'>
+  <img src="./_prints/demo.gif" alt="Demo" />
+</div>
