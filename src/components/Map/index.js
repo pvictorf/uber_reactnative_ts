@@ -36,7 +36,7 @@ export const Map = () => {
 
   useEffect(() => {
     function navigateToRideScreen() {
-      const hasTravelTimeInfo = (travelTimeInformation.totalSeconds > 0) 
+      const hasTravelTimeInfo = (travelTimeInformation.totalSeconds > 0 && destination) 
       if(hasTravelTimeInfo) {
         navigation.navigate('RideOptionsCardScreen');
       }
